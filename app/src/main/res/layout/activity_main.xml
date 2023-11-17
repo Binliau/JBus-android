@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_backgrounddeno"
+    tools:context=".MainActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/main_title"
+        android:layout_width="278dp"
+        android:layout_height="wrap_content"
+        android:background="#70000000"
+        android:paddingLeft="20dp"
+        android:text="JBus Will Arrive Soon.."
+        android:textColor="#FFFFFF"
+        android:textSize="40dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/main_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#70000000"
+        android:paddingLeft="20dp"
+        android:text="this page is still in development, please wait!"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp"/>
+</LinearLayout>

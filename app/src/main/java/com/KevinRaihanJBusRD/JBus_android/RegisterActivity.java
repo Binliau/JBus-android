@@ -4,30 +4,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class LoginActivity extends AppCompatActivity {
-    private TextView registerNow = null;
-    private Button loginButton = null;
+public class RegisterActivity extends AppCompatActivity {
+    private Button registerButton = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
         getSupportActionBar().hide();
-        registerNow = findViewById(R.id.register_now);
-        loginButton = findViewById(R.id.login_button);
+        registerButton = findViewById(R.id.register_button);
 
-        registerNow.setOnClickListener(v -> {
-            moveActivity(this, RegisterActivity.class);
-        });
-        loginButton.setOnClickListener(v -> {
-            moveActivity(this, MainActivity.class);
+        registerButton.setOnClickListener(v -> {
+            moveActivity(this, LoginActivity.class);
         });
     }
+
     private void moveActivity(Context ctx, Class<?> cls) {
         Intent intent = new Intent(ctx, cls);
         startActivity(intent);

@@ -1,4 +1,4 @@
-package com.KevinRaihanJBusRD.JBus_android;
+package com.kevinraihanjbusrd.jbus_android;
 
 import org.junit.Test;
 
