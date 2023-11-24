@@ -97,7 +97,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/topup_button"
+            android:id="@+id/topup_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -105,6 +105,7 @@
             android:hint="Top Up Amount               " />
 
         <Button
+            android:id="@+id/topup_button"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
