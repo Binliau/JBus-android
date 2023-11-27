@@ -1,13 +1,17 @@
 package com.kevinraihanjbusrd.jbus_android;
 
+import static com.kevinraihanjbusrd.jbus_android.LoginActivity.loggedAccount;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +33,11 @@ public class AboutMeActivity extends AppCompatActivity {
     private TextView username = null;
     private TextView email = null;
     private TextView balance = null;
+    private LinearLayout registered = null;
+    private LinearLayout unregistered = null;
+    private TextView registerLink = null;
+    private Button manageBusBotton = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +52,25 @@ public class AboutMeActivity extends AppCompatActivity {
         balance = (TextView)findViewById(R.id.profile_balance);
         topUpAmount = findViewById(R.id.topup_amount);
         topUpButton = findViewById(R.id.topup_button);
+        registerLink = findViewById(R.id.text_to_register);
+        manageBusBotton = findViewById(R.id.managebus_button);
 
-        username.setText(LoginActivity.loggedAccount.name);
-        email.setText(LoginActivity.loggedAccount.email);
-        balance.setText(String.valueOf(LoginActivity.loggedAccount.balance));
+        username.setText(loggedAccount.name);
+        email.setText(loggedAccount.email);
+        balance.setText(String.valueOf(loggedAccount.balance));
         topUpButton.setOnClickListener(x -> handleTopUp());
+        registerLink.setOnClickListener(x -> {
+            moveActivity(mContext, RegisterRenterActivity.class);
+        });
+        manageBusBotton.setOnClickListener(x -> {
+            moveActivity(mContext, ManageBusActivity.class);
+        });
+
+        if (loggedAccount.company != null) {
+            unregistered.setVisibility(View.GONE);
+        } else {
+            registered.setVisibility(View.GONE);
+        }
     }
     private void moveActivity(Context ctx, Class<?> cls) {
         Intent intent = new Intent(ctx, cls);
@@ -68,7 +91,7 @@ public class AboutMeActivity extends AppCompatActivity {
 
         double topUpValue = Double.valueOf(topUpString);
 
-        mApiService.topUp(LoginActivity.loggedAccount.id,topUpValue).enqueue(new Callback<BaseResponse<Double>>() {
+        mApiService.topUp(loggedAccount.id,topUpValue).enqueue(new Callback<BaseResponse<Double>>() {
             @Override
             public void onResponse(Call<BaseResponse<Double>> call, Response<BaseResponse<Double>> response) {
                 if(!response.isSuccessful()){
@@ -81,7 +104,7 @@ public class AboutMeActivity extends AppCompatActivity {
                     finish();
                     overridePendingTransition(0, 0);
 
-                    LoginActivity.loggedAccount.balance += res.payload.doubleValue();
+                    loggedAccount.balance += res.payload.doubleValue();
 
                     startActivity(getIntent());
                     overridePendingTransition(0, 0);

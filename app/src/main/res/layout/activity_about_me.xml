@@ -113,4 +113,58 @@
             android:text="TOP UP" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/unregistered_text"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="You're not registered as a renter"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/text_to_register"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Register your Company"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/registered_text"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="You're already registered as a renter"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/managebus_button"
+            android:layout_width="600dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Register your Company"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
 </LinearLayout>
