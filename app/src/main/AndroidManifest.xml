@@ -16,24 +16,20 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".AddBusActivity"
+            android:name=".PaymentActivity"
             android:exported="false" />
         <activity
-            android:name=".ManageBusActivity"
+            android:name=".MakeBookingActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterRenterActivity"
+            android:name=".BookSeatActivity"
             android:exported="false" />
         <activity
-            android:name=".BusArrayAdapter"
-            android:exported="false"
-            android:label="@string/title_activity_bus_array_adapter"
-            android:theme="@style/Theme.JBusandroid" />
+            android:name=".BusDetailActivity"
+            android:exported="false" />
         <activity
-            android:name=".model.BusArrayAdapter"
-            android:exported="false"
-            android:label="@string/title_activity_bus_array_adapter"
-            android:theme="@style/Theme.JBusandroid" />
+            android:name=".BusScheduleActivity"
+            android:exported="false" />
         <activity
             android:name=".AboutMeActivity"
             android:exported="false" />
@@ -51,6 +47,15 @@
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddBusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ManageBusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterRenterActivity"
             android:exported="false" />
     </application>
 

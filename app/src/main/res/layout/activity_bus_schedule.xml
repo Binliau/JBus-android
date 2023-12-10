@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@drawable/background"
+    android:backgroundTint="#1640D6"
+    android:orientation="vertical"
+    tools:context=".BusScheduleActivity">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:text="Departure Schedules"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:text='"Time is Money"'
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/input_date"
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:hint="Date"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"/>
+        <EditText
+            android:id="@+id/input_time"
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:hint="Time"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="#D30482"
+            android:layout_marginLeft="20dp"
+            android:text="Add"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="508dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_mini"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/schedule_list"
+            android:layout_width="match_parent"
+            android:layout_height="485dp"
+            android:background="@drawable/background_mini" />
+
+    </LinearLayout>
+</LinearLayout>

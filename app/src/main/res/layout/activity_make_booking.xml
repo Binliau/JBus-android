@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:backgroundTint="#1640D6"
+    android:orientation="vertical"
+    tools:context=".MakeBookingActivity">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:background="@drawable/background_mini"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/bus_title"
+            android:layout_width="300dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:text="NetlabJBusRD"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:text="Booking details"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="328dp"
+        android:layout_height="151dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_mini"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="Departure Date                :"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/departure_date"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="   -"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="Seats Available                :"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/available_seats"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="   -"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="Total Price                        :"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/total_price"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="   -"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select your Seats"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"/>
+    <LinearLayout
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="#60FFFFFF">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <TableLayout
+                    android:id="@+id/seat_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"/>
+            </ScrollView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="312dp"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:background="@drawable/background_mini"
+            android:layout_gravity="center_horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/baseline_square_24"/>
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:text="Unavailable"
+                android:textColor="@color/white"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/baseline_square_24"
+                android:backgroundTint="#00FF00"/>
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:text="Available"
+                android:textColor="@color/white"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/baseline_square_24"
+                android:backgroundTint="#4F4FD8"/>
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:text="Selected"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/order_button"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/background_listview"
+        android:textColor="@color/white"
+        android:text="Order seats"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>

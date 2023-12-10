@@ -160,7 +160,7 @@
             android:layout_width="600dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:text="Register your Company"
+            android:text="Manage Bus"
             android:textAlignment="center"
             android:textStyle="bold"
             android:textSize="20dp"

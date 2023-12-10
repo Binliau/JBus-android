@@ -5,6 +5,7 @@ import com.kevinraihanjbusrd.jbus_android.model.BaseResponse;
 import com.kevinraihanjbusrd.jbus_android.model.Bus;
 import com.kevinraihanjbusrd.jbus_android.model.BusType;
 import com.kevinraihanjbusrd.jbus_android.model.Facility;
+import com.kevinraihanjbusrd.jbus_android.model.Payment;
 import com.kevinraihanjbusrd.jbus_android.model.Renter;
 import com.kevinraihanjbusrd.jbus_android.model.Station;
 
@@ -19,6 +20,8 @@ import retrofit2.http.Query;
 public interface BaseApiService {
     @GET("account/{id}")
     Call<Account> getAccountbyId (@Path("id") int id);
+    @GET("bus/getAllBus")
+    Call<List<Bus>> getAllBus();
     @GET("bus/getMyBus")
     Call<List<Bus>> getMyBus(
             @Query("accountId") int accountId
@@ -27,7 +30,7 @@ public interface BaseApiService {
     Call<List<Station>> getAllStation();
 
     @POST("bus/create")
-    Call<BaseResponse<Bus>> createBus(
+    Call<BaseResponse<Bus>> create(
             @Query("accountId") int accountId,
             @Query("name") String name,
             @Query("capacity") int capacity,
@@ -63,4 +66,30 @@ public interface BaseApiService {
         @Query("address") String address,
         @Query("phoneNumber") String phoneNumber
     );
+
+    @POST("bus/addSchedule")
+    Call<BaseResponse<Bus>> addSchedule(
+            @Query("busId") int busId,
+            @Query("time") String time
+    );
+
+    @GET("bus/getBusFromId")
+    Call<Bus> getBusById(
+            @Query("busId") int busId
+    );
+
+    @POST("payment/makeBooking")
+    Call<BaseResponse<Payment>> makeBooking(
+            @Query("buyerId") int buyerId,
+            @Query("renterId") int renterId,
+            @Query("busId") int busId,
+            @Query("busSeats") List<String> busSeats,
+            @Query("departureDate") String departureDate
+    );
+
+    @GET("payment/getMyPayment")
+    Call<List<Payment>> getMyPayment(
+            @Query("buyerId") int buyerId
+    );
+
 }

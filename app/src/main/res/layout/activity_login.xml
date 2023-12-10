@@ -4,25 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
+    android:background="@drawable/background"
+    android:backgroundTint="#1640D6"
     tools:context=".LoginActivity"
     android:gravity="center"
     android:orientation="vertical"> <!-- Add this line -->
     <!-- Fill the linear layout with some components-->
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="150dp"
-        android:layout_height="120sp"
-        android:src="@drawable/baseline_directions_bus_24"/>
-    <TextView
-        android:id="@+id/login_title"
-        android:layout_width="200dp"
-        android:layout_height="40sp"
-        android:gravity="center"
-        android:text="JBus"
-        android:background="#90000000"
-        android:textColor="@color/white"
-        android:textSize="30sp" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="400dp"
+        android:layout_height="600dp"
+        android:orientation="vertical"
+        android:background="@drawable/background_mini"
+        android:paddingLeft="10dp" android:paddingRight="10dp">
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="150dp"
+            android:layout_height="120sp"
+            android:layout_gravity="center"
+            android:src="@drawable/baseline_directions_bus_24"/>
+        <TextView
+            android:id="@+id/login_title"
+            android:layout_width="150dp"
+            android:layout_height="40sp"
+            android:layout_gravity="center"
+            android:text="JBus"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="30sp" />
     <LinearLayout
         android:id="@+id/login_form"
         android:layout_width="match_parent"
@@ -32,7 +40,7 @@
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="25dp"
             android:background="#70000000"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
@@ -61,7 +69,7 @@
             android:text="Login"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:backgroundTint="#797B84"/>
+            android:backgroundTint="#D30482"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -71,7 +79,7 @@
             android:paddingTop="60dp"
             android:text="Don't have an account?"
             android:textAlignment="center"
-            android:textColor="#393B43" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/register_now"
@@ -86,6 +94,7 @@
             android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textStyle="bold"
-            android:backgroundTint="#393B43"/>
+            android:backgroundTint="#D30482"/>
     </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </LinearLayout>

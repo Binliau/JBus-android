@@ -46,7 +46,7 @@ public class AddBusActivity extends AppCompatActivity {
     private Spinner arrivalSpinnerDropdown;
     private TableLayout facilitiesSection;
     private CheckBox AC, WIFI, Toilet, LCD_TV, Lunch, Large_Baggage, CoolBox, Electric_Socket;
-    private List<Facility> facilityList = new ArrayList<>();
+    private List<Facility> facilities = new ArrayList<>();
     private Button addBusButton;
 
     @SuppressLint("MissingInflatedId")
@@ -76,8 +76,8 @@ public class AddBusActivity extends AppCompatActivity {
 
         setStationList();
 
-        handleFacilitiesCheckbox();
         addBusButton.setOnClickListener(x -> {
+            handleFacilitiesCheckbox();
             handleAddBus();
         });
     }
@@ -170,35 +170,35 @@ public class AddBusActivity extends AppCompatActivity {
         Electric_Socket = findViewById(R.id.checkbox_electric_socket);
 
         if(AC.isChecked()){
-            facilityList.add(Facility.AC);
+            facilities.add(Facility.AC);
         }
 
         if(WIFI.isChecked()){
-            facilityList.add(Facility.WIFI);
+            facilities.add(Facility.WIFI);
         }
 
         if(Toilet.isChecked()){
-            facilityList.add(Facility.TOILET);
+            facilities.add(Facility.TOILET);
         }
 
         if(LCD_TV.isChecked()){
-            facilityList.add(Facility.LCD_TV);
+            facilities.add(Facility.LCD_TV);
         }
 
         if(Lunch.isChecked()){
-            facilityList.add(Facility.LUNCH);
+            facilities.add(Facility.LUNCH);
         }
 
         if(Large_Baggage.isChecked()){
-            facilityList.add(Facility.LARGE_BAGGAGE);
+            facilities.add(Facility.LARGE_BAGGAGE);
         }
 
         if(CoolBox.isChecked()){
-            facilityList.add(Facility.COOL_BOX);
+            facilities.add(Facility.COOL_BOX);
         }
 
         if(Electric_Socket.isChecked()){
-            facilityList.add(Facility.ELECTRIC_SOCKET);
+            facilities.add(Facility.ELECTRIC_SOCKET);
         }
     }
 
@@ -222,7 +222,7 @@ public class AddBusActivity extends AppCompatActivity {
 
         int capacity = Integer.valueOf(busCapacityValue);
         int price = Integer.valueOf(busPriceValue);
-        mApiService.createBus(loggedAccount.id, busNameValue, capacity, facilityList, selectedBusType, price, selectedDepartureStation, selectedArrivalStation)
+        mApiService.create(loggedAccount.id, busNameValue, capacity, facilities, selectedBusType, price, selectedDepartureStation, selectedArrivalStation)
                 .enqueue(new Callback<BaseResponse<Bus>>() {
                     @Override
                     public void onResponse(Call<BaseResponse<Bus>> call, Response<BaseResponse<Bus>> response) {

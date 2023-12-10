@@ -4,12 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:context=".ManageBusActivity"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ManageBusActivity"
+    android:background="@drawable/background"
+    android:backgroundTint="#1640D6">
     <ListView
         android:id="@+id/manageBusView"
+        android:layout_width="345dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:context=".ManageBusActivity"
+        tools:visibility="visible" />
+    <LinearLayout
+        android:id="@+id/no_bus"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:backgroundTint="#70ffffff"/>
+        android:layout_height="90dp"
+        android:orientation="vertical"
+        android:background="@drawable/background_mini"
+        tools:visibility="gone">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You have no bussy to manage"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please add a Bus to continue"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
 </LinearLayout>

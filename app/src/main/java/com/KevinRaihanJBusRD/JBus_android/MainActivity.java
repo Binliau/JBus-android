@@ -1,5 +1,7 @@
 package com.kevinraihanjbusrd.jbus_android;
 
+import static com.kevinraihanjbusrd.jbus_android.LoginActivity.selectedBus;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +9,8 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -18,18 +22,28 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.kevinraihanjbusrd.jbus_android.model.Bus;
+import com.kevinraihanjbusrd.jbus_android.request.BaseApiService;
+import com.kevinraihanjbusrd.jbus_android.request.UtilsApi;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
+    private BaseApiService mApiService;
+    private Context mContext;
     private TextView actionProfile = null;
+    private TextView actionPayment = null;
     private Button[] btns;
     private int currentPage = 0;
     private int pageSize = 12; // kalian dapat bereksperimen dengan field ini
     private int listSize;
     private int noOfPages;
-    private List<Bus> listBus = new ArrayList<>();
+    private List<Bus> busList = new ArrayList<>();
+    private LinearLayout noBus = null;
     private Button prevButton = null;
     private Button nextButton = null;
     private ListView busListView = null;
@@ -40,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar();
+        mApiService = UtilsApi.getApiService();
+        mContext = this;
+
         BusArrayAdapter numbersArrayAdapter = new BusArrayAdapter(this, Bus.sampleBusList(25));
         ListView numbersListView = findViewById(R.id.list_view);
         numbersListView.setAdapter(numbersArrayAdapter);
@@ -48,9 +65,11 @@ public class MainActivity extends AppCompatActivity {
         nextButton = findViewById(R.id.next_page);
         pageScroll = findViewById(R.id.page_number_scroll);
         busListView = findViewById(R.id.list_view);
-// membuat sample list
-        listBus = Bus.sampleBusList(20);
-        listSize = listBus.size();
+        noBus = findViewById(R.id.no_bus);
+
+        busListView.setVisibility(View.GONE);
+        getAllBus();
+
 // construct the footer
         paginationFooter();
         goToPage(currentPage);
@@ -62,6 +81,42 @@ public class MainActivity extends AppCompatActivity {
         nextButton.setOnClickListener(v -> {
             currentPage = currentPage != noOfPages -1? currentPage+1 : currentPage;
             goToPage(currentPage);
+        });
+        busListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> busListView, View view, int i, long l) {
+                selectedBus = (Bus) busListView.getItemAtPosition(i);
+
+                if(selectedBus != null) {
+                    moveActivity(mContext, BusDetailActivity.class);
+                }
+            }
+        });
+    }
+    protected void getAllBus() {
+        mApiService.getAllBus().enqueue(new Callback<List<Bus>>() {
+            @Override
+            public void onResponse(Call<List<Bus>> call, Response<List<Bus>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(mContext, "Application error " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                busList = response.body();
+                if (!busList.isEmpty()) {
+                    noBus.setVisibility(View.GONE);
+                    busListView.setVisibility(View.VISIBLE);
+                    ArrayList<Bus> setList = new ArrayList<>(busList);
+
+                    BusArrayAdapter pageList = new BusArrayAdapter(mContext, setList);
+                    busListView.setAdapter(pageList);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Bus>> call, Throwable t) {
+                Toast.makeText(mContext, "Ada problem pada server", Toast.LENGTH_SHORT).show();
+            }
         });
     }
     private void paginationFooter() {
@@ -97,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 btns[index].setBackgroundDrawable(getResources().getDrawable(R.drawable.circle));
                 btns[i].setTextColor(getResources().getColor(android.R.color.white));
                 scrollToItem(btns[index]);
-                viewPaginatedList(listBus, currentPage);
+                viewPaginatedList(busList, currentPage);
             } else {
                 btns[i].setBackgroundColor(getResources().getColor(android.R.color.transparent));
                 btns[i].setTextColor(getResources().getColor(android.R.color.black));
@@ -136,13 +191,20 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+        if (id == R.id.payment_button) {
+            Intent intent = new Intent(this, PaymentActivity.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.action_bar_menu, menu);
         actionProfile = findViewById(R.id.profile_button);
+        actionPayment = findViewById(R.id.payment_button);
         return true;
     }
     private void moveActivity(Context ctx, Class<?> cls) {

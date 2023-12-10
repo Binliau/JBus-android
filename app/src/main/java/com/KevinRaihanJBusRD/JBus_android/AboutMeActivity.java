@@ -36,7 +36,7 @@ public class AboutMeActivity extends AppCompatActivity {
     private LinearLayout registered = null;
     private LinearLayout unregistered = null;
     private TextView registerLink = null;
-    private Button manageBusBotton = null;
+    private Button manageBusButton = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +53,21 @@ public class AboutMeActivity extends AppCompatActivity {
         topUpAmount = findViewById(R.id.topup_amount);
         topUpButton = findViewById(R.id.topup_button);
         registerLink = findViewById(R.id.text_to_register);
-        manageBusBotton = findViewById(R.id.managebus_button);
+        manageBusButton = findViewById(R.id.managebus_button);
+        unregistered = findViewById(R.id.unregistered_text);
+        registered = findViewById((R.id.registered_text));
 
         username.setText(loggedAccount.name);
         email.setText(loggedAccount.email);
         balance.setText(String.valueOf(loggedAccount.balance));
-        topUpButton.setOnClickListener(x -> handleTopUp());
+        topUpButton.setOnClickListener(x -> {
+            handleTopUp();
+            Toast.makeText(mContext, "Top up berhasil!", Toast.LENGTH_SHORT).show();
+        });
         registerLink.setOnClickListener(x -> {
             moveActivity(mContext, RegisterRenterActivity.class);
         });
-        manageBusBotton.setOnClickListener(x -> {
+        manageBusButton.setOnClickListener(x -> {
             moveActivity(mContext, ManageBusActivity.class);
         });
 

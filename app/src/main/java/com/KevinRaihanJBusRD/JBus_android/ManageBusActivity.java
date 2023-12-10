@@ -1,6 +1,7 @@
 package com.kevinraihanjbusrd.jbus_android;
 
 import static com.kevinraihanjbusrd.jbus_android.LoginActivity.loggedAccount;
+import static com.kevinraihanjbusrd.jbus_android.LoginActivity.selectedBus;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.view.Menu;
@@ -30,27 +34,37 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ManageBusActivity extends AppCompatActivity {
-
     private BaseApiService mApiService;
     private Context mContext;
     private ListView busListView = null;
-    private TextView noBus;
+    private LinearLayout noBus = null;
     private List<Bus> busList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_bus);
+        this.getSupportActionBar().setTitle("Manage Bus");
 
         mApiService = UtilsApi.getApiService();
         mContext = this;
+
         busListView = findViewById(R.id.manageBusView);
+        noBus = findViewById(R.id.no_bus);
+        busListView.setVisibility(View.GONE);
 
-        ManageBusArrayAdapter numbersArrayAdapter = new ManageBusArrayAdapter(this, Bus.sampleBusList(20));
-        ListView numbersListView = findViewById(R.id.manageBusView);
-        numbersListView.setAdapter(numbersArrayAdapter);
+        getAllMyBus();
 
-        getSupportActionBar().setTitle("Manage Bus");
+        busListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> busListView, View view, int i, long l) {
+                selectedBus = (Bus) busListView.getItemAtPosition(i);
+
+                if(selectedBus != null) {
+                    moveActivity(mContext, BusScheduleActivity.class);
+                }
+            }
+        });
     }
 
     @Override
@@ -63,29 +77,30 @@ public class ManageBusActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add_bus) {
-            moreActivity(this, AddBusActivity.class);
+            moveActivity(this, AddBusActivity.class);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void moreActivity (Context ctx, Class<?> cls) {
+    private void moveActivity(Context ctx, Class<?> cls) {
         Intent intent = new Intent(ctx, cls);
         startActivity(intent);
     }
 
-    protected void getAllMyBus(){
+    protected void getAllMyBus() {
         mApiService.getMyBus(loggedAccount.id).enqueue(new Callback<List<Bus>>() {
             @Override
             public void onResponse(Call<List<Bus>> call, Response<List<Bus>> response) {
-                if(!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     Toast.makeText(mContext, "Application error " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 busList = response.body();
-                if(!busList.isEmpty()){
-
+                if (!busList.isEmpty()) {
+                    noBus.setVisibility(View.GONE);
+                    busListView.setVisibility(View.VISIBLE);
                     ArrayList<Bus> setList = new ArrayList<>(busList);
 
                     ManageBusArrayAdapter pageList = new ManageBusArrayAdapter(mContext, setList);

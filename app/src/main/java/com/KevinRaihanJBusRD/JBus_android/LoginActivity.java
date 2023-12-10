@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.kevinraihanjbusrd.jbus_android.model.Account;
 import com.kevinraihanjbusrd.jbus_android.model.BaseResponse;
+import com.kevinraihanjbusrd.jbus_android.model.Bus;
 import com.kevinraihanjbusrd.jbus_android.request.BaseApiService;
 import com.kevinraihanjbusrd.jbus_android.request.UtilsApi;
 
@@ -21,12 +22,13 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static Account loggedAccount;
+    public static Account loggedAccount = null;
     private BaseApiService mApiService;
     private Context mContext;
     private EditText email, password;
     private TextView registerNow = null;
     private Button loginButton = null;
+    public static Bus selectedBus = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

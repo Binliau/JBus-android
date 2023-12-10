@@ -2,26 +2,28 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="345dp"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    tools:ignore="UselessParent">
+    tools:context=".ManageBusActivity"
+    android:backgroundTint="#D30482"
+    android:background="@drawable/background_listview"
+    android:gravity="center">
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="325dp"
+        android:id="@+id/textViewManageBus"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="bottom|left"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:backgroundTint="#70ffffff"
-        tools:ignore="RtlHardcoded" />
+        android:backgroundTint="#70ffffff"/>
+
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="84dp"
         android:layout_height="84dp"
+        android:background="@drawable/baseline_edit_calendar_24"
         android:padding="16dp"
-        android:background="@drawable/baseline_calendar_month_24"
         tools:ignore="ContentDescription" />
 </LinearLayout>

@@ -4,37 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
+    android:background="@drawable/background"
+    android:backgroundTint="#1640D6"
     tools:context=".MainActivity"
     android:gravity="center"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/main_title"
-        android:layout_width="278dp"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#70000000"
-        android:paddingLeft="20dp"
-        android:text="JBus Will Arrive Soon.."
-        android:textColor="#FFFFFF"
-        android:textSize="40dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/main_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#70000000"
-        android:paddingLeft="20dp"
-        android:text="this page is still in development, please wait!"
-        android:textColor="#FFFFFF"
-        android:textSize="25dp" />
-
+        android:orientation="vertical"
+        android:background="@drawable/background_mini">
+        <TextView
+            android:id="@+id/main_title"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="JBus"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/main_description"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Main Page"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <LinearLayout
+        android:id="@+id/no_bus"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:backgroundTint="#70001B79"
+        android:background="@drawable/background_mini"
+        tools:visibility="gone">
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:text="There are no Bus Schedules posted yet"
+            android:textColor="#90FFFFFF"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Sit tight! we'll add them soon"
+            android:textColor="#90FFFFFF"
+            android:textAlignment="center" />
+    </LinearLayout>
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:backgroundTint="#70ffffff"/>
-
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/background_mini"/>
     <LinearLayout
         android:id="@+id/pagination_footer"
         android:layout_width="match_parent"
@@ -43,17 +72,19 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingHorizontal="21dp">
+
         <Button
             android:id="@+id/prev_page"
-            android:layout_width="56dp"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
+            android:background="@drawable/background_listview"
             android:drawableLeft="@drawable/baseline_arrow_back_ios_24"
             android:minHeight="0dp" />
         <HorizontalScrollView
             android:id="@+id/page_number_scroll"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:layout_weight="25"
             android:paddingHorizontal="18dp">
             <LinearLayout
@@ -65,10 +96,11 @@
 
         <Button
             android:id="@+id/next_page"
-            android:layout_width="56dp"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/baseline_arrow_forward_ios_24"
+            android:background="@drawable/background_listview"
+            android:drawableRight="@drawable/baseline_arrow_forward_ios_24"
             android:minHeight="0dp" />
 
     </LinearLayout>
